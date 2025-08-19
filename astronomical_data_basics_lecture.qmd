@@ -1,0 +1,655 @@
+---
+title: "A Beginner's Guide to Working with Astronomical Data"
+subtitle: "Data Types, Images, and Basic Tools"
+author: "Paula"
+format:
+  revealjs:
+    theme: dark
+    transition: slide
+    background-transition: fade
+    highlight-style: github
+    code-line-numbers: true
+    slide-number: true
+    chalkboard: true
+    footer: "Astronomical Data Analysis - Universidade de São Paulo"
+    logo: ""
+    css: custom.css
+---
+
+## Learning Objectives {.smaller}
+
+**By the end of this lecture, you will be able to:**
+
+- Identify the main types of astronomical data and their applications
+- Understand the fundamentals of digital astronomical images
+- Recognize common sources of noise and artifacts in astronomical data
+- Use DS9 to load, display, and analyze FITS images
+- Create RGB color composites from filter images
+- Navigate astronomical coordinate systems
+
+:::{.callout-note}
+**PDF Reference**: Complete guide in Pössel (2020) - Sections 1-3
+:::
+
+---
+
+## The Digital Revolution in Astronomy {.smaller}
+
+:::{.incremental}
+- **50 years ago**: Photographic plates, visual observations
+- **Today**: Digital CCDs, massive surveys, automated processing
+- **Scale explosion**: 
+  - ESO VISTA: ~150 TB/year
+  - LSST (under construction): **500 TB/month**
+  - IllustrisTNG simulation: >1 Petabyte
+:::
+
+:::{.callout-important}
+Digital data analysis skills are now **essential** for modern astronomers
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 1 (Introduction), p. 1-2
+:::
+
+---
+
+# Section 1: The Data Landscape {background-color="#1e3a8a"}
+
+---
+
+## Modern Astronomy: A Data Revolution {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Scale of modern surveys:**
+
+- **Massive datasets**: Petabytes of information
+- **Automated processing**: From raw data to catalogs
+- **Statistical astronomy**: Population studies
+- **Virtual observatories**: Data sharing standards
+:::
+
+:::{.column width="50%"}
+![Westerlund 2 stellar cluster](arXiv-1905.13189v2/heic1509a.jpg){width=90%}
+
+*Example: Hubble image of star cluster Westerlund 2*
+:::
+:::
+
+---
+
+## Types of Astronomical Data {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Observational Data:**
+
+- **Images**: 2D brightness arrays, different filters
+- **Spectra**: 1D wavelength vs. intensity
+- **Data cubes**: 3D (x, y, wavelength)
+- **Catalogues**: High-level derived properties
+:::
+
+:::{.column width="50%"}
+**Simulation Data:**
+
+- **N-body**: Particle-based (stars, dark matter)
+- **Grid-based**: Cell-based properties (gas dynamics)
+- **Hybrid approaches**: Combined methods
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 1.1 (Types of data), p. 2-3
+:::
+
+---
+
+## Data Scale Examples {.smaller}
+
+:::{.incremental}
+- **Single Hubble image**: ~50 MB (FITS format)
+- **SDSS Survey**: >900,000 galaxies (original survey)
+- **Gaia mission**: >1 billion stars with precise positions
+- **IllustrisTNG50**: 20 billion particles in 50 Mpc cube
+:::
+
+```{.bash}
+# Typical file sizes you'll encounter:
+# FITS image:        50 MB - 1 GB
+# Spectrum:          1 MB - 100 MB  
+# Data cube:         100 MB - 10 GB
+# Large catalogue:   1 GB - 100 GB
+```
+
+:::{.callout-note}
+**PDF Reference**: Section 1 (Introduction), p. 1-2
+:::
+
+---
+
+## Tools Philosophy {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Application Software:**
+- Easy to use, graphical interfaces
+- Limited but well-implemented tasks
+- Examples: DS9, TOPCAT
+- **When to use**: Quick inspection, standard tasks
+:::
+
+:::{.column width="50%"}
+**Programming Languages:**
+- Full control and flexibility
+- Automation and custom analysis
+- Examples: Python, R, IDL
+- **When to use**: Research, complex analysis
+:::
+:::
+
+:::{.callout-tip}
+**Strategy**: Start with applications, move to programming for research
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 1.2 (Types of tools), p. 3-4
+:::
+
+---
+
+# Section 2: Image Fundamentals {background-color="#1e3a8a"}
+
+---
+
+## Digital Images: The Basics {.smaller}
+
+:::{.columns}
+:::{.column width="60%"}
+:::{.incremental}
+- **Pixels**: Picture elements, discrete brightness values
+- **Typical range**: 0 to 65,536 (16-bit) vs. 0-255 (8-bit consumer)
+- **Coordinate systems**: (X,Y) pixel coordinates + sky coordinates
+- **FITS format**: Flexible Image Transport System (since 1980s)
+:::
+
+```{.python}
+# Example pixel coordinate
+# Bottom-left pixel: (1,1) in FITS convention
+# Sky coordinates: RA/Dec (like longitude/latitude)
+```
+:::
+
+:::{.column width="40%"}
+![Pixel coordinate system example](arXiv-1905.13189v2/pixel-scheme.pdf){width=90%}
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.1 (Images: Colour, brightness, pixels), p. 5-6
+:::
+
+---
+
+## Why Astronomical Images are Black & White {.smaller}
+
+:::{.columns}
+:::{.column width="60%"}
+**Consumer cameras:**
+- Bayer filter mask over sensor
+- Interpolated color information
+- Fixed filter pattern
+
+**Astronomical cameras:**
+- No fixed filters - maximum resolution
+- Flexible filter selection (U, B, V, R, I, narrow-band)
+- Sequential observations through different filters
+:::
+
+:::{.column width="40%"}
+![Bayer mask pattern](arXiv-1905.13189v2/bayermaske.pdf){width=80%}
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.1, p. 5-6; Figure 2
+:::
+
+---
+
+## The Point Spread Function (PSF) {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+:::{.incremental}
+- **Problem**: Even the largest stars should be point sources
+- **Reality**: Stars appear as small disks in images
+- **Cause**: Diffraction through telescope aperture
+- **Result**: PSF - brightness distribution for point sources
+:::
+
+**Why this matters:**
+- Limits angular resolution
+- Affects photometry
+- Must be accounted for in analysis
+:::
+
+:::{.column width="50%"}
+![Stellar brightness profile showing PSF](arXiv-1905.13189v2/brightness-profile.pdf){width=90%}
+
+**Typical PSF size:**
+- Ground-based: ~1-2 arcseconds
+- Hubble: ~0.1 arcseconds
+- JWST: ~0.03 arcseconds (infrared)
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.2 (Images: PSF and noise), p. 7-8
+:::
+
+---
+
+## Sources of Noise {.smaller}
+
+:::{.incremental}
+1. **Photon noise** (fundamental limit)
+   - Random arrival of photons
+   - Follows Poisson statistics
+   - √N noise for N photons
+
+2. **Electronic noise**
+   - Detector readout electronics
+   - Can be reduced by cooling
+
+3. **Cosmic rays** (space telescopes)
+   - High-energy particles
+   - Create streaks or dots
+:::
+
+:::{.callout-tip}
+**Signal-to-noise ratio** improves as √(exposure time × telescope area)
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.2, p. 7-8; Figure 9-10
+:::
+
+---
+
+## Data Reduction Pipeline {.smaller}
+
+**Essential corrections to raw images:**
+
+:::{.incremental}
+1. **Bias subtraction**: Remove electronic offset
+2. **Dark subtraction**: Remove thermal current
+3. **Flat fielding**: Correct for sensitivity variations
+:::
+
+```{.python}
+# Simplified data reduction equation:
+reduced_image = (raw_image - bias - dark) / flat_field
+```
+
+:::{.callout-warning}
+These steps are **essential** - raw astronomical images are not science-ready!
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.3 (Images: Noise and flatfielding), p. 8-10
+:::
+
+---
+
+## **Hands-on Break**: Download DS9 {.smaller}
+
+**Let's get started with real data!**
+
+1. **Download DS9**: [http://ds9.si.edu/](http://ds9.si.edu/)
+2. **Install and open** the application
+3. **Familiarize yourself** with the interface:
+   - Main image window
+   - Menu structure (main + secondary)
+   - Overview window
+
+**While installing**: Think about what types of astronomical objects you'd like to analyze
+
+:::{.callout-tip}
+**Pro tip**: DS9 has extensive documentation and tutorials on their website
+:::
+
+---
+
+# Section 2: Spectra & Data Cubes {background-color="#1e3a8a"}
+
+---
+
+## Astronomical Spectroscopy {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**How it works:**
+- Dispersive element (grating/prism)
+- Slit mask for spatial separation
+- Wavelength → position mapping
+- Calibration with known lines
+:::
+
+:::{.column width="50%"}
+**Information content:**
+- Chemical composition
+- Temperature and pressure
+- Radial velocity (Doppler shift)
+- Magnetic fields
+:::
+:::
+
+:::{.callout-important}
+Spectroscopy reveals the **physical properties** of astronomical objects
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.5 (Spectra), p. 11-14; Figures 15-21
+:::
+
+---
+
+## Data Cubes: 3D Spectroscopy {.smaller}
+
+**Integral Field Spectroscopy (IFS):**
+
+- **Concept**: Full spectrum at every pixel
+- **Dimensions**: X, Y (spatial) + wavelength
+- **Applications**: Galaxy kinematics, stellar populations
+- **Challenge**: Visualizing 3D data on 2D screens
+
+**Example applications:**
+- Velocity maps (1st moment)
+- Velocity dispersion (2nd moment)  
+- Line ratio maps (diagnostics)
+
+:::{.callout-note}
+**PDF Reference**: Section 2.6 (Data cubes), p. 14; Figures 22-23
+:::
+
+---
+
+# Section 2: Catalogues {background-color="#1e3a8a"}
+
+---
+
+## From Images to Science {.smaller}
+
+**The analysis pipeline:**
+
+:::{.incremental}
+1. **Raw images** → Reduced images
+2. **Source detection** → Object catalogues
+3. **Photometry** → Brightness measurements
+4. **Astrometry** → Precise positions
+5. **Statistical analysis** → Physical insights
+:::
+
+**Modern surveys provide:**
+- Pre-measured catalogues
+- Standardized photometry
+- Quality flags and uncertainties
+
+:::{.callout-note}
+**PDF Reference**: Section 2.7 (High-level data: catalogues and tables), p. 15-18
+:::
+
+---
+
+## Visualization Techniques {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Histograms:**
+- Distribution of single properties
+- Linear vs. logarithmic binning
+- Reveals population characteristics
+
+**Scatter plots:**
+- Relationships between properties
+- Color coding for third dimension
+- Pattern recognition
+:::
+
+:::{.column width="50%"}
+**Color-magnitude diagrams:**
+- Hertzsprung-Russell diagram
+- Main sequence identification
+- Stellar evolution insights
+
+**Statistical analysis:**
+- Correlation functions
+- Fitting procedures
+- Machine learning applications
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 2.7, p. 15-17; Figures 24-32
+:::
+
+---
+
+# Section 3: DS9 Hands-on {background-color="#1e3a8a"}
+
+---
+
+## DS9 Interface Overview {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Main components:**
+
+:::{.incremental}
+- **Image window**: Primary display area
+- **Main menu**: File, Scale, Color, Zoom, etc.
+- **Secondary menu**: Context-dependent options
+- **Info panel**: Coordinates, pixel values, object info
+- **Overview window**: Full image context
+:::
+
+**Key concepts:**
+- FITS file format
+- World Coordinate System (WCS)
+- Brightness scaling options
+:::
+
+:::{.column width="50%"}
+![DS9 interface screenshot](arXiv-1905.13189v2/ds9.jpg){width=90%}
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 3 (SAOImage DS9), p. 18-26
+:::
+
+---
+
+## **Major Hands-on Session**: Hubble Eagle Nebula {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Download the famous "Pillars of Creation" data:**
+
+1. **Go to**: [https://hla.stsci.edu/hlaview.html](https://hla.stsci.edu/hlaview.html)
+2. **Search for**: "M16" or use Proposal ID "05773"
+3. **Download these files** (~53 MB each):
+   - `hst_05773_05_wfpc2_f502n_wf_drz.fits`
+   - `hst_05773_05_wfpc2_f656n_wf_drz.fits` 
+   - `hst_05773_05_wfpc2_f673n_wf_drz.fits`
+
+**Tasks:**
+- Load each image in DS9
+- Experiment with scaling (zscale, sqrt, log)
+- Explore coordinate systems
+- Examine FITS headers
+:::
+
+:::{.column width="50%"}
+![Example: Eagle Nebula in DS9](arXiv-1905.13189v2/pillars-final.jpg){width=90%}
+:::
+:::
+
+---
+
+## Coordinate Systems {.smaller}
+
+**Understanding astronomical coordinates:**
+
+:::{.columns}
+:::{.column width="50%"}
+**Pixel coordinates:**
+- (X,Y) position in image
+- Bottom-left = (1,1) in FITS
+- Integer values at pixel centers
+:::
+
+:::{.column width="50%"}
+**Sky coordinates (WCS):**
+- Right Ascension (RA): 0-24 hours
+- Declination (Dec): -90° to +90°
+- Epoch (usually J2000)
+:::
+:::
+
+**Practice:**
+- Move cursor around image
+- Note coordinate displays
+- Switch between sexagesimal and decimal
+
+:::{.callout-note}
+**PDF Reference**: Section 3.3 (Coordinates), p. 20-21
+:::
+
+---
+
+## FITS Headers: The Metadata {.smaller}
+
+**Accessing information:**
+- File → Header → Choose [SCI] version
+- Contains observation details, instrument settings, processing history
+
+**Key keywords to look for:**
+```
+OBJECT    = Object name
+DATE-OBS  = Observation date  
+EXPTIME   = Exposure time (seconds)
+FILTER    = Filter used
+TELESCOP  = Telescope name
+INSTRUME  = Instrument name
+```
+
+**Coordinate information:**
+- CRVAL1, CRVAL2: Reference coordinates
+- CRPIX1, CRPIX2: Reference pixels
+- CD matrix: Coordinate transformation
+
+:::{.callout-note}
+**PDF Reference**: Section 3.4 (Meta-Information: the FITS header), p. 21-22
+:::
+
+---
+
+## Creating RGB Color Images {.smaller}
+
+**Making the famous Hubble composite:**
+
+1. **Restart DS9** (clean slate)
+2. **Frame → RGB** (opens RGB panel)
+3. **Load filters in order:**
+   - Red: f673n (673 nm filter)
+   - Green: f656n (656 nm - H-alpha)
+   - Blue: f502n (502 nm filter)
+4. **Adjust scaling**: Try sqrt scaling + Lock scale
+5. **Fine-tune**: 99% scale limits
+
+:::{.callout-warning}
+This is a **false-color** image! The filters don't correspond to true RGB.
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 3.5 (Making a colour image), p. 22
+:::
+
+---
+
+## **Final Hands-on Session**: Create Your Composite {.smaller}
+
+**Your turn to create the Pillars of Creation!**
+
+**Steps:**
+1. Load all three filter images
+2. Experiment with different color assignments
+3. Try different scaling functions
+4. Adjust scale limits for best contrast
+
+**Questions to explore:**
+- What structures become visible with different scalings?
+- How do the different filters reveal different features?
+- What might the colors tell us about the physics?
+
+**Challenge**: Can you identify the pillar structures that made this image famous?
+
+---
+
+## Key Takeaways {.smaller}
+
+:::{.incremental}
+1. **Astronomical data** comes in many forms, each revealing different physics
+2. **Digital images** require careful handling of noise, PSF, and calibration
+3. **FITS format** is the standard, containing both data and metadata
+4. **DS9** provides powerful visualization and basic analysis tools
+5. **Color images** in astronomy are often false-color composites
+6. **Coordinate systems** link pixel positions to sky positions
+:::
+
+:::{.callout-important}
+**Remember**: What you see in processed images involves many choices about display and scaling!
+:::
+
+---
+
+## Next Steps & Resources {.smaller}
+
+**Upcoming lectures:**
+- TOPCAT for catalogue analysis
+- Python for automated data processing
+- Advanced visualization techniques
+
+**Recommended resources:**
+- Complete Pössel guide (sections 4-12)
+- DS9 user manual: [http://ds9.si.edu/doc/](http://ds9.si.edu/doc/)
+- FITS standard documentation
+- Virtual Observatory tools and protocols
+
+**Practice suggestions:**
+- Explore different astronomical surveys (SDSS, 2MASS, etc.)
+- Try the DS9 tutorial datasets
+- Join astronomy forums and communities
+
+:::{.callout-note}
+**PDF Reference**: Complete guide available for detailed study
+:::
+
+---
+
+## Questions & Discussion {.center}
+
+**Thank you for your attention!**
+
+**Feel free to ask about:**
+- Specific data analysis challenges
+- Tool recommendations
+- Research applications
+- Technical details
+
+**Contact**: [Your contact information]
+
+**Course materials**: [Link to course repository]
