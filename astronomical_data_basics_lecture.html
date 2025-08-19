@@ -6,10 +6,10 @@
 <script src="astronomical_data_basics_lecture_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="astronomical_data_basics_lecture_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="astronomical_data_basics_lecture_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="astronomical_data_basics_lecture_files/libs/quarto-html/quarto-syntax-highlighting-59898bd1c6b9d2bb783127feaa000c76.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+<link href="astronomical_data_basics_lecture_files/libs/quarto-html/quarto-syntax-highlighting-0626ff4d7a71b55c8707dcae1d04a9b6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
-  <meta name="author" content="Paula">
+  <meta name="author" content="Paula Coelho">
   <title>A Beginner’s Guide to Working with Astronomical Data</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -29,9 +29,8 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +41,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -95,7 +94,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="astronomical_data_basics_lecture_files/libs/revealjs/dist/theme/quarto-2c1b5f745a11cfad616ebade4a4a7d24.css">
+  <link rel="stylesheet" href="astronomical_data_basics_lecture_files/libs/revealjs/dist/theme/quarto-423d414d36ce366a9d05f36d06304417.css">
   <link rel="stylesheet" href="custom.css">
   <link href="astronomical_data_basics_lecture_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="astronomical_data_basics_lecture_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -202,7 +201,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Paula 
+Paula Coelho 
 </div>
 </div>
 </div>
@@ -216,8 +215,6 @@ Paula
 <li>Understand the fundamentals of digital astronomical images</li>
 <li>Recognize common sources of noise and artifacts in astronomical data</li>
 <li>Use DS9 to load, display, and analyze FITS images</li>
-<li>Create RGB color compositquaes from filter images</li>
-<li>Navigate astronomical coordinate systems</li>
 </ul>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -228,23 +225,25 @@ Paula
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>PDF Reference</strong>: Complete guide in Pössel (2020) - Sections 1-3</p>
+<p><strong>PDF Reference</strong>: Complete guide in Pössel (2020, arXiv/1905.13189) - Sections 1-3</p>
 </div>
 </div>
 </div>
 </section>
 <section id="the-digital-revolution-in-astronomy" class="slide level2 smaller">
 <h2>The Digital Revolution in Astronomy</h2>
+<div>
 <ul>
-<li class="fragment"><strong>50 years ago</strong>: Photographic plates, visual observations</li>
-<li class="fragment"><strong>Today</strong>: Digital CCDs, massive surveys, automated processing</li>
-<li class="fragment"><strong>Scale explosion</strong>:
+<li><strong>50 years ago</strong>: Photographic plates, visual observations</li>
+<li><strong>Today</strong>: Digital CCDs, massive surveys, automated processing</li>
+<li><strong>Scale explosion</strong>:
 <ul>
-<li class="fragment">ESO VISTA: ~150 TB/year</li>
-<li class="fragment">LSST (under construction): <strong>500 TB/month</strong></li>
-<li class="fragment">IllustrisTNG simulation: &gt;1 Petabyte</li>
+<li>ESO VISTA: ~150 TB/year</li>
+<li>LSST (under construction): <strong>500 TB/month</strong></li>
+<li>IllustrisTNG simulation: &gt;1 Petabyte</li>
 </ul></li>
 </ul>
+</div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -292,56 +291,20 @@ Paula
 <li><strong>Virtual observatories</strong>: Data sharing standards</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
 <p><img data-src="arXiv-1905.13189v2/heic1509a.jpg" style="width:90.0%"></p>
-<figcaption>Westerlund 2 stellar cluster</figcaption>
-</figure>
-</div>
 <p><em>Example: Hubble image of star cluster Westerlund 2</em></p>
 </div></div>
 </section>
-<section id="types-of-astronomical-data" class="slide level2 smaller">
-<h2>Types of Astronomical Data</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Observational Data:</strong></p>
-<ul>
-<li><strong>Images</strong>: 2D brightness arrays, different filters</li>
-<li><strong>Spectra</strong>: 1D wavelength vs.&nbsp;intensity</li>
-<li><strong>Data cubes</strong>: 3D (x, y, wavelength)</li>
-<li><strong>Catalogues</strong>: High-level derived properties</li>
-</ul>
-</div><div class="column" style="width:50%;">
-<p><strong>Simulation Data:</strong></p>
-<ul>
-<li><strong>N-body</strong>: Particle-based (stars, dark matter)</li>
-<li><strong>Grid-based</strong>: Cell-based properties (gas dynamics)</li>
-<li><strong>Hybrid approaches</strong>: Combined methods</li>
-</ul>
-</div></div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>PDF Reference</strong>: Section 1.1 (Types of data), p.&nbsp;2-3</p>
-</div>
-</div>
-</div>
-</section>
 <section id="data-scale-examples" class="slide level2 smaller">
 <h2>Data Scale Examples</h2>
+<div>
 <ul>
-<li class="fragment"><strong>Single Hubble image</strong>: ~50 MB (FITS format)</li>
-<li class="fragment"><strong>SDSS Survey</strong>: &gt;900,000 galaxies (original survey)</li>
-<li class="fragment"><strong>Gaia mission</strong>: &gt;1 billion stars with precise positions</li>
-<li class="fragment"><strong>IllustrisTNG50</strong>: 20 billion particles in 50 Mpc cube</li>
+<li><strong>Single Hubble image</strong>: ~50 MB (FITS format)</li>
+<li><strong>SDSS Survey</strong>: &gt;900,000 galaxies (original survey)</li>
+<li><strong>Gaia mission</strong>: &gt;1 billion stars with precise positions</li>
+<li><strong>IllustrisTNG50</strong>: 20 billion particles in 50 Mpc cube</li>
 </ul>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href=""></a><span class="co"># Typical file sizes you'll encounter:</span></span>
 <span id="cb1-2"><a href=""></a><span class="co"># FITS image:        50 MB - 1 GB</span></span>
 <span id="cb1-3"><a href=""></a><span class="co"># Spectrum:          1 MB - 100 MB  </span></span>
@@ -361,13 +324,60 @@ Paula
 </div>
 </div>
 </section>
+<section id="types-of-astronomical-data" class="slide level2 smaller">
+<h2>Types of Astronomical Data</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Observational Data:</strong></p>
+<ul>
+<li><strong>Images</strong>: 2D brightness arrays, different filters</li>
+<li><strong>Spectra</strong>: 1D wavelength vs.&nbsp;intensity</li>
+<li><strong>Data cubes</strong>: 3D (x, y, wavelength)</li>
+<li><strong>Catalogues</strong>: High-level derived properties</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Simulation Data:</strong></p>
+<ul>
+<li>The situation is more diverse</li>
+<li><strong>N-body</strong>: Particle-based (stars, dark matter)</li>
+<li><strong>Grid-based</strong>: Cell-based properties (gas dynamics)</li>
+</ul>
+</div></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>PDF Reference</strong>: Section 1.1 (Types of data), p.&nbsp;2-3</p>
+</div>
+</div>
+</div>
+</section>
 <section id="tools-philosophy" class="slide level2 smaller">
 <h2>Tools Philosophy</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Application Software:</strong> - Easy to use, graphical interfaces - Limited but well-implemented tasks - Examples: DS9, TOPCAT - <strong>When to use</strong>: Quick inspection, standard tasks</p>
+<p><strong>Application Software:</strong></p>
+<ul>
+<li>A software written for a specific set of tasks</li>
+<li>Easy to use, graphical interfaces</li>
+<li>Limited but well-implemented tasks</li>
+<li>Examples: DS9, TOPCAT</li>
+<li><strong>When to use</strong>: Quick inspection, standard tasks</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Programming Languages:</strong> - Full control and flexibility - Automation and custom analysis - Examples: Python, R, IDL - <strong>When to use</strong>: Research, complex analysis</p>
+<p><strong>Programming Languages:</strong></p>
+<ul>
+<li>A tool for writing your own custom applications</li>
+<li>Full control and flexibility</li>
+<li>Automation and custom analysis</li>
+<li>Examples: Python, R, IDL</li>
+<li><strong>When to use</strong>: Research, complex analysis</li>
+</ul>
 </div></div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -408,12 +418,14 @@ Paula
 <h2>Digital Images: The Basics</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
+<div>
 <ul>
-<li class="fragment"><strong>Pixels</strong>: Picture elements, discrete brightness values</li>
-<li class="fragment"><strong>Typical range</strong>: 0 to 65,536 (16-bit) vs.&nbsp;0-255 (8-bit consumer)</li>
-<li class="fragment"><strong>Coordinate systems</strong>: (X,Y) pixel coordinates + sky coordinates</li>
-<li class="fragment"><strong>FITS format</strong>: Flexible Image Transport System (since 1980s)</li>
+<li><strong>Pixels</strong>: Picture elements, discrete brightness values</li>
+<li><strong>Typical range</strong>: 0 to 65,536 (16-bit) vs.&nbsp;0-255 (8-bit consumer)</li>
+<li><strong>Coordinate systems</strong>: (X,Y) pixel coordinates + sky coordinates</li>
+<li><strong>FITS format</strong>: Flexible Image Transport System (since 1980s)</li>
 </ul>
+</div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="co"># Example pixel coordinate</span></span>
 <span id="cb2-2"><a href=""></a><span class="co"># Bottom-left pixel: (1,1) in FITS convention</span></span>
 <span id="cb2-3"><a href=""></a><span class="co"># Sky coordinates: RA/Dec (like longitude/latitude)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -471,12 +483,14 @@ Paula
 <h2>The Point Spread Function (PSF)</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
+<div>
 <ul>
-<li class="fragment"><strong>Problem</strong>: Even the largest stars should be point sources</li>
-<li class="fragment"><strong>Reality</strong>: Stars appear as small disks in images</li>
-<li class="fragment"><strong>Cause</strong>: Diffraction through telescope aperture</li>
-<li class="fragment"><strong>Result</strong>: PSF - brightness distribution for point sources</li>
+<li><strong>Problem</strong>: Even the largest stars should be point sources</li>
+<li><strong>Reality</strong>: Stars appear as small disks in images</li>
+<li><strong>Cause</strong>: Diffraction through telescope aperture</li>
+<li><strong>Result</strong>: PSF - brightness distribution for point sources</li>
 </ul>
+</div>
 <p><strong>Why this matters:</strong> - Limits angular resolution - Affects photometry - Must be accounted for in analysis</p>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -503,24 +517,26 @@ Paula
 </section>
 <section id="sources-of-noise" class="slide level2 smaller">
 <h2>Sources of Noise</h2>
+<div>
 <ol type="1">
-<li class="fragment"><strong>Photon noise</strong> (fundamental limit)
+<li><strong>Photon noise</strong> (fundamental limit)
 <ul>
-<li class="fragment">Random arrival of photons</li>
-<li class="fragment">Follows Poisson statistics</li>
-<li class="fragment">√N noise for N photons</li>
+<li>Random arrival of photons</li>
+<li>Follows Poisson statistics</li>
+<li>√N noise for N photons</li>
 </ul></li>
-<li class="fragment"><strong>Electronic noise</strong>
+<li><strong>Electronic noise</strong>
 <ul>
-<li class="fragment">Detector readout electronics</li>
-<li class="fragment">Can be reduced by cooling</li>
+<li>Detector readout electronics</li>
+<li>Can be reduced by cooling</li>
 </ul></li>
-<li class="fragment"><strong>Cosmic rays</strong> (space telescopes)
+<li><strong>Cosmic rays</strong> (space telescopes)
 <ul>
-<li class="fragment">High-energy particles</li>
-<li class="fragment">Create streaks or dots</li>
+<li>High-energy particles</li>
+<li>Create streaks or dots</li>
 </ul></li>
 </ol>
+</div>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -551,11 +567,13 @@ Paula
 <section id="data-reduction-pipeline" class="slide level2 smaller">
 <h2>Data Reduction Pipeline</h2>
 <p><strong>Essential corrections to raw images:</strong></p>
+<div>
 <ol type="1">
-<li class="fragment"><strong>Bias subtraction</strong>: Remove electronic offset</li>
-<li class="fragment"><strong>Dark subtraction</strong>: Remove thermal current</li>
-<li class="fragment"><strong>Flat fielding</strong>: Correct for sensitivity variations</li>
+<li><strong>Bias subtraction</strong>: Remove electronic offset</li>
+<li><strong>Dark subtraction</strong>: Remove thermal current</li>
+<li><strong>Flat fielding</strong>: Correct for sensitivity variations</li>
 </ol>
+</div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="co"># Simplified data reduction equation:</span></span>
 <span id="cb3-2"><a href=""></a>reduced_image <span class="op">=</span> (raw_image <span class="op">-</span> bias <span class="op">-</span> dark) <span class="op">/</span> flat_field</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -692,13 +710,15 @@ Paula
 <section id="from-images-to-science" class="slide level2 smaller">
 <h2>From Images to Science</h2>
 <p><strong>The analysis pipeline:</strong></p>
+<div>
 <ol type="1">
-<li class="fragment"><strong>Raw images</strong> → Reduced images</li>
-<li class="fragment"><strong>Source detection</strong> → Object catalogues</li>
-<li class="fragment"><strong>Photometry</strong> → Brightness measurements</li>
-<li class="fragment"><strong>Astrometry</strong> → Precise positions</li>
-<li class="fragment"><strong>Statistical analysis</strong> → Physical insights</li>
+<li><strong>Raw images</strong> → Reduced images</li>
+<li><strong>Source detection</strong> → Object catalogues</li>
+<li><strong>Photometry</strong> → Brightness measurements</li>
+<li><strong>Astrometry</strong> → Precise positions</li>
+<li><strong>Statistical analysis</strong> → Physical insights</li>
 </ol>
+</div>
 <p><strong>Modern surveys provide:</strong> - Pre-measured catalogues - Standardized photometry - Quality flags and uncertainties</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -751,13 +771,15 @@ Paula
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Main components:</strong></p>
+<div>
 <ul>
-<li class="fragment"><strong>Image window</strong>: Primary display area</li>
-<li class="fragment"><strong>Main menu</strong>: File, Scale, Color, Zoom, etc.</li>
-<li class="fragment"><strong>Secondary menu</strong>: Context-dependent options</li>
-<li class="fragment"><strong>Info panel</strong>: Coordinates, pixel values, object info</li>
-<li class="fragment"><strong>Overview window</strong>: Full image context</li>
+<li><strong>Image window</strong>: Primary display area</li>
+<li><strong>Main menu</strong>: File, Scale, Color, Zoom, etc.</li>
+<li><strong>Secondary menu</strong>: Context-dependent options</li>
+<li><strong>Info panel</strong>: Coordinates, pixel values, object info</li>
+<li><strong>Overview window</strong>: Full image context</li>
 </ul>
+</div>
 <p><strong>Key concepts:</strong> - FITS file format - World Coordinate System (WCS) - Brightness scaling options</p>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
@@ -906,14 +928,16 @@ INSTRUME  = Instrument name</code></pre>
 </section>
 <section id="key-takeaways" class="slide level2 smaller">
 <h2>Key Takeaways</h2>
+<div>
 <ol type="1">
-<li class="fragment"><strong>Astronomical data</strong> comes in many forms, each revealing different physics</li>
-<li class="fragment"><strong>Digital images</strong> require careful handling of noise, PSF, and calibration</li>
-<li class="fragment"><strong>FITS format</strong> is the standard, containing both data and metadata</li>
-<li class="fragment"><strong>DS9</strong> provides powerful visualization and basic analysis tools</li>
-<li class="fragment"><strong>Color images</strong> in astronomy are often false-color composites</li>
-<li class="fragment"><strong>Coordinate systems</strong> link pixel positions to sky positions</li>
+<li><strong>Astronomical data</strong> comes in many forms, each revealing different physics</li>
+<li><strong>Digital images</strong> require careful handling of noise, PSF, and calibration</li>
+<li><strong>FITS format</strong> is the standard, containing both data and metadata</li>
+<li><strong>DS9</strong> provides powerful visualization and basic analysis tools</li>
+<li><strong>Color images</strong> in astronomy are often false-color composites</li>
+<li><strong>Coordinate systems</strong> link pixel positions to sky positions</li>
 </ol>
+</div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -958,7 +982,7 @@ INSTRUME  = Instrument name</code></pre>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Astronomical Data Analysis - Universidade de São Paulo</p>
+<p>AGA0299 - Lab 1 - 2025B</p>
 </div>
 </div></div>
 
@@ -1173,172 +1197,190 @@ INSTRUME  = Instrument name</code></pre>
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-      window.document.addEventListener("DOMContentLoaded", function (event) {
-        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-        tabsets.forEach(function(tabset) {
-          const tabby = new Tabby('#' + tabset.id);
-        });
-        const isCodeAnnotation = (el) => {
-          for (const clz of el.classList) {
-            if (clz.startsWith('code-annotation-')) {                     
-              return true;
-            }
-          }
-          return false;
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
-        const onCopySuccess = function(e) {
-          // button target
-          const button = e.trigger;
-          // don't keep focus
-          button.blur();
-          // flash "checked"
-          button.classList.add('code-copy-button-checked');
-          var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
-          let tooltip;
-          if (window.bootstrap) {
-            button.setAttribute("data-bs-toggle", "tooltip");
-            button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
-            tooltip = new bootstrap.Tooltip(button, 
-              { trigger: "manual", 
-                customClass: "code-copy-button-tooltip",
-                offset: [0, -8]});
-            tooltip.show();    
-          }
-          setTimeout(function() {
-            if (tooltip) {
-              tooltip.hide();
-              button.removeAttribute("data-bs-title");
-              button.removeAttribute("data-bs-toggle");
-              button.removeAttribute("data-bs-placement");
-            }
-            button.setAttribute("title", currentTitle);
-            button.classList.remove('code-copy-button-checked');
-          }, 1000);
-          // clear code selection
-          e.clearSelection();
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
         }
-        const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
-            }
-            return codeEl.innerText;
-        }
-        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-          text: getTextToCopy
-        });
-        clipboard.on('success', onCopySuccess);
-        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-            text: getTextToCopy,
-            container: window.document.getElementById('quarto-embedded-source-code-modal')
-          });
-          clipboardModal.on('success', onCopySuccess);
-        }
-          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp('/' + window.location.host + '/');
-          var isInternal = (href) => {
-              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-          }
-          // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-          for (var i=0; i<links.length; i++) {
-            const link = links[i];
-            if (!isInternal(link.href)) {
-              // undo the damage that might have been done by quarto-nav.js in the case of
-              // links that we want to consider external
-              if (link.dataset.originalHref !== undefined) {
-                link.href = link.dataset.originalHref;
-              }
-            }
-          }
-        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-          const config = {
-            allowHTML: true,
-            maxWidth: 500,
-            delay: 100,
-            arrow: false,
-            appendTo: function(el) {
-                return el.closest('section.slide') || el.parentElement;
-            },
-            interactive: true,
-            interactiveBorder: 10,
-            theme: 'light-border',
-            placement: 'bottom-start',
-          };
-          if (contentFn) {
-            config.content = contentFn;
-          }
-          if (onTriggerFn) {
-            config.onTrigger = onTriggerFn;
-          }
-          if (onUntriggerFn) {
-            config.onUntrigger = onUntriggerFn;
-          }
-            config['offset'] = [0,0];
-            config['maxWidth'] = 700;
-          window.tippy(el, config); 
-        }
-        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-        for (var i=0; i<noterefs.length; i++) {
-          const ref = noterefs[i];
-          tippyHover(ref, function() {
-            // use id or data attribute instead here
-            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-            try { href = new URL(href).hash; } catch {}
-            const id = href.replace(/^#\/?/, "");
-            const note = window.document.getElementById(id);
-            if (note) {
-              return note.innerHTML;
-            } else {
-              return "";
-            }
-          });
-        }
-        const findCites = (el) => {
-          const parentEl = el.parentElement;
-          if (parentEl) {
-            const cites = parentEl.dataset.cites;
-            if (cites) {
-              return {
-                el,
-                cites: cites.split(' ')
-              };
-            } else {
-              return findCites(el.parentElement)
-            }
-          } else {
-            return undefined;
-          }
-        };
-        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-        for (var i=0; i<bibliorefs.length; i++) {
-          const ref = bibliorefs[i];
-          const citeInfo = findCites(ref);
-          if (citeInfo) {
-            tippyHover(citeInfo.el, function() {
-              var popup = window.document.createElement('div');
-              citeInfo.cites.forEach(function(cite) {
-                var citeDiv = window.document.createElement('div');
-                citeDiv.classList.add('hanging-indent');
-                citeDiv.classList.add('csl-entry');
-                var biblioDiv = window.document.getElementById('ref-' + cite);
-                if (biblioDiv) {
-                  citeDiv.innerHTML = biblioDiv.innerHTML;
-                }
-                popup.appendChild(citeDiv);
-              });
-              return popup.innerHTML;
-            });
-          }
-        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
       });
-      </script>
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
     
 
 </body></html>

@@ -1,7 +1,7 @@
 ---
 title: "A Beginner's Guide to Working with Astronomical Data"
 subtitle: "Data Types, Images, and Basic Tools"
-author: "Paula & Claude"
+author: "Paula Coelho"
 format:
   revealjs:
     theme: simple
@@ -11,7 +11,7 @@ format:
     code-line-numbers: true
     slide-number: true
     chalkboard: true
-    footer: "Astronomical Data Analysis - Universidade de São Paulo"
+    footer: "AGA0299 - Lab 1 - 2025B"
     logo: ""
     css: custom.css
     incremental: false  # Turns off all incremental by default
@@ -26,8 +26,6 @@ format:
 - Understand the fundamentals of digital astronomical images
 - Recognize common sources of noise and artifacts in astronomical data
 - Use DS9 to load, display, and analyze FITS images
-- Create RGB color compositquaes from filter images
-- Navigate astronomical coordinate systems
 
 :::{.callout-note}
 **PDF Reference**: Complete guide in Pössel (2020, arXiv/1905.13189) - Sections 1-3
@@ -73,7 +71,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 :::
 
 :::{.column width="50%"}
-![Westerlund 2 stellar cluster](arXiv-1905.13189v2/heic1509a.jpg){width=90%}
+![](arXiv-1905.13189v2/heic1509a.jpg){width=90%}
 
 *Example: Hubble image of star cluster Westerlund 2*
 :::
@@ -81,36 +79,9 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 ---
 
-## Types of Astronomical Data {.smaller}
-
-:::{.columns}
-:::{.column width="50%"}
-**Observational Data:**
-
-- **Images**: 2D brightness arrays, different filters
-- **Spectra**: 1D wavelength vs. intensity
-- **Data cubes**: 3D (x, y, wavelength)
-- **Catalogues**: High-level derived properties
-:::
-
-:::{.column width="50%"}
-**Simulation Data:**
-
-- **N-body**: Particle-based (stars, dark matter)
-- **Grid-based**: Cell-based properties (gas dynamics)
-- **Hybrid approaches**: Combined methods
-:::
-:::
-
-:::{.callout-note}
-**PDF Reference**: Section 1.1 (Types of data), p. 2-3
-:::
-
----
-
 ## Data Scale Examples {.smaller}
 
-:::{.incremental}
+:::{}
 - **Single Hubble image**: ~50 MB (FITS format)
 - **SDSS Survey**: >900,000 galaxies (original survey)
 - **Gaia mission**: >1 billion stars with precise positions
@@ -131,11 +102,38 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 ---
 
+## Types of Astronomical Data {.smaller}
+
+:::{.columns}
+:::{.column width="50%"}
+**Observational Data:**
+
+- **Images**: 2D brightness arrays, different filters
+- **Spectra**: 1D wavelength vs. intensity
+- **Data cubes**: 3D (x, y, wavelength)
+- **Catalogues**: High-level derived properties
+:::
+
+:::{.column width="50%"}
+**Simulation Data:**
+
+- The situation is more diverse
+- **N-body**: Particle-based (stars, dark matter)
+- **Grid-based**: Cell-based properties (gas dynamics)
+:::
+:::
+
+:::{.callout-note}
+**PDF Reference**: Section 1.1 (Types of data), p. 2-3
+:::
+
 ## Tools Philosophy {.smaller}
 
 :::{.columns}
 :::{.column width="50%"}
 **Application Software:**
+
+- A software written for a specific set of tasks
 - Easy to use, graphical interfaces
 - Limited but well-implemented tasks
 - Examples: DS9, TOPCAT
@@ -144,6 +142,8 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 :::{.column width="50%"}
 **Programming Languages:**
+
+- A tool for writing your own custom applications
 - Full control and flexibility
 - Automation and custom analysis
 - Examples: Python, R, IDL
@@ -169,7 +169,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 :::{.columns}
 :::{.column width="60%"}
-:::{.incremental}
+:::{}
 - **Pixels**: Picture elements, discrete brightness values
 - **Typical range**: 0 to 65,536 (16-bit) vs. 0-255 (8-bit consumer)
 - **Coordinate systems**: (X,Y) pixel coordinates + sky coordinates
@@ -224,7 +224,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 :::{.columns}
 :::{.column width="50%"}
-:::{.incremental}
+:::{}
 - **Problem**: Even the largest stars should be point sources
 - **Reality**: Stars appear as small disks in images
 - **Cause**: Diffraction through telescope aperture
@@ -255,7 +255,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 ## Sources of Noise {.smaller}
 
-:::{.incremental}
+:::{}
 1. **Photon noise** (fundamental limit)
    - Random arrival of photons
    - Follows Poisson statistics
@@ -284,7 +284,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 **Essential corrections to raw images:**
 
-:::{.incremental}
+:::{}
 1. **Bias subtraction**: Remove electronic offset
 2. **Dark subtraction**: Remove thermal current
 3. **Flat fielding**: Correct for sensitivity variations
@@ -386,7 +386,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 
 **The analysis pipeline:**
 
-:::{.incremental}
+:::{}
 1. **Raw images** → Reduced images
 2. **Source detection** → Object catalogues
 3. **Photometry** → Brightness measurements
@@ -449,7 +449,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 :::{.column width="50%"}
 **Main components:**
 
-:::{.incremental}
+:::{}
 - **Image window**: Primary display area
 - **Main menu**: File, Scale, Color, Zoom, etc.
 - **Secondary menu**: Context-dependent options
@@ -603,7 +603,7 @@ This is a **false-color** image! The filters don't correspond to true RGB.
 
 ## Key Takeaways {.smaller}
 
-:::{.incremental}
+:::{}
 1. **Astronomical data** comes in many forms, each revealing different physics
 2. **Digital images** require careful handling of noise, PSF, and calibration
 3. **FITS format** is the standard, containing both data and metadata
