@@ -1,0 +1,120 @@
+# Quarto
+/.quarto/
+/_site/
+/_book/
+/_manuscript/
+*.html
+*.pdf
+!arXiv-1905.13189v2/*.pdf
+!1905.13189v2.pdf
+
+# R and RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.Rapp.history
+.httr-oauth
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
+*.nav
+*.snm
+*.vrb
+
+# LaTeX
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.lof
+*.lot
+*.maf
+*.mtc
+*.mtc[0-9]*.
+*.slf[0-9]*.
+*.slt[0-9]*.
+*.stc[0-9]*.
+
+# VS Code
+.vscode/
+
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Course-specific ignores
+/student_submissions/
+/grades/
+/private_notes/
+*.key
+*_solutions.*
+
+# Large data files (uncomment if needed)
+# *.fits
+# *.fit
+# *.h5
+# *.hdf5
+
+# Backup files
+*.bak
+*.backup
+*~
