@@ -1,0 +1,165 @@
+---
+title: "Theme Comparison for Astronomical Data Lecture"
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+
+# RevealJS Theme Preview
+
+Here are examples of how your presentation would look with different themes. You can test each by changing the `theme:` line in your .qmd file.
+
+## Professional/Academic Themes (Recommended)
+
+### `default`
+```yaml
+format:
+  revealjs:
+    theme: default
+```
+- Clean white background
+- Dark text
+- Professional look
+- Good for projection
+
+### `white` 
+```yaml
+format:
+  revealjs:
+    theme: white
+```
+- Pure white background
+- Excellent readability
+- Classic academic style
+
+### `simple`
+```yaml
+format:
+  revealjs:
+    theme: simple
+```
+- Minimal design
+- Focus on content
+- Clean typography
+
+## Dark Themes (Good for Labs)
+
+### `dark` (current)
+```yaml
+format:
+  revealjs:
+    theme: dark
+```
+- Dark background, light text
+- Easy on eyes in dark rooms
+- Good for computer labs
+
+### `night`
+```yaml
+format:
+  revealjs:
+    theme: night
+```
+- Dark with blue accents
+- Professional dark theme
+- Good contrast
+
+### `league`
+```yaml
+format:
+  revealjs:
+    theme: league
+```
+- Gray background
+- White text
+- Professional appearance
+
+## Colorful Options
+
+### `sky`
+```yaml
+format:
+  revealjs:
+    theme: sky
+```
+- Blue gradient background
+- Fresh, modern look
+- Good for astronomy content
+
+### `solarized`
+```yaml
+format:
+  revealjs:
+    theme: solarized
+```
+- Popular programmer theme
+- Easy on eyes
+- Distinctive color palette
+
+### `moon`
+```yaml
+format:
+  revealjs:
+    theme: moon
+```
+- Blue-toned dark theme
+- Atmospheric
+- Fits astronomy theme
+
+## Custom Themes
+
+You can also use:
+
+### Bootstrap themes
+```yaml
+format:
+  revealjs:
+    theme: [default, custom.scss]
+```
+
+### Completely custom
+```yaml
+format:
+  revealjs:
+    theme: custom.scss
+```
+
+## Quick Test Method
+
+To quickly test themes, you can create a minimal version:
+
+```yaml
+---
+title: "Theme Test"
+format:
+  revealjs:
+    theme: THEME_NAME_HERE  # Change this
+---
+
+## Test Slide
+
+- Point one
+- Point two
+
+```{.python}
+# Code example
+print("Hello astronomy!")
+```
+
+:::{.callout-note}
+This is a callout box
+:::
+```
+
+## Recommendations for Your Lecture
+
+**For computer labs with screens:** `dark`, `night`, or `league`
+
+**For projection in bright rooms:** `default`, `white`, or `simple`
+
+**For astronomy feel:** `sky`, `moon`, or `dark`
+
+**Most professional:** `default`, `white`, `simple`
+
+**Best contrast:** `dark`, `white`, `night`

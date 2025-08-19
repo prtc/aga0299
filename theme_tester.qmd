@@ -1,0 +1,71 @@
+---
+title: "Astronomical Data Analysis - Theme Test"
+subtitle: "Quick preview of different themes"
+author: "Paula"
+format:
+  revealjs:
+    theme: simple  # Change this to test different themes
+    slide-number: true
+    footer: "Theme: simple"  # Update this when changing theme
+---
+
+## Sample Content
+
+This slide shows how your lecture content would look.
+
+:::{.incremental}
+- **Astronomical data** comes in many forms
+- **Digital images** require careful handling  
+- **FITS format** is the standard
+- **DS9** provides visualization tools
+:::
+
+---
+
+## Code Example
+
+```{.python}
+# Example pixel coordinate
+# Bottom-left pixel: (1,1) in FITS convention
+reduced_image = (raw_image - bias - dark) / flat_field
+```
+
+:::{.callout-note}
+**PDF Reference**: Section 2.1, p. 5-6
+:::
+
+---
+
+## Callout Examples
+
+:::{.callout-important}
+Digital data analysis skills are now **essential** for modern astronomers
+:::
+
+:::{.callout-tip}
+**Signal-to-noise ratio** improves as √(exposure time × telescope area)
+:::
+
+:::{.callout-warning}
+These steps are **essential** - raw astronomical images are not science-ready!
+:::
+
+---
+
+## Two-Column Layout
+
+:::{.columns}
+:::{.column width="50%"}
+**Observational Data:**
+- Images: 2D brightness arrays
+- Spectra: 1D wavelength vs. intensity
+- Data cubes: 3D datasets
+:::
+
+:::{.column width="50%"}
+**Simulation Data:**
+- N-body: Particle-based
+- Grid-based: Cell properties
+- Hybrid approaches
+:::
+:::
