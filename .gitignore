@@ -7,6 +7,7 @@
 *.pdf
 !arXiv-1905.13189v2/*.pdf
 !1905.13189v2.pdf
+*_files/
 
 # R and RStudio
 .Rproj.user/

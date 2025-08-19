@@ -1,10 +1,10 @@
 ---
 title: "A Beginner's Guide to Working with Astronomical Data"
 subtitle: "Data Types, Images, and Basic Tools"
-author: "Paula"
+author: "Paula & Claude"
 format:
   revealjs:
-    theme: dark
+    theme: simple
     transition: slide
     background-transition: fade
     highlight-style: github
@@ -14,6 +14,8 @@ format:
     footer: "Astronomical Data Analysis - Universidade de São Paulo"
     logo: ""
     css: custom.css
+    incremental: false  # Turns off all incremental by default
+
 ---
 
 ## Learning Objectives {.smaller}
@@ -24,18 +26,18 @@ format:
 - Understand the fundamentals of digital astronomical images
 - Recognize common sources of noise and artifacts in astronomical data
 - Use DS9 to load, display, and analyze FITS images
-- Create RGB color composites from filter images
+- Create RGB color compositquaes from filter images
 - Navigate astronomical coordinate systems
 
 :::{.callout-note}
-**PDF Reference**: Complete guide in Pössel (2020) - Sections 1-3
+**PDF Reference**: Complete guide in Pössel (2020, arXiv/1905.13189) - Sections 1-3
 :::
 
 ---
 
 ## The Digital Revolution in Astronomy {.smaller}
 
-:::{.incremental}
+:::{}
 - **50 years ago**: Photographic plates, visual observations
 - **Today**: Digital CCDs, massive surveys, automated processing
 - **Scale explosion**: 
