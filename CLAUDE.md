@@ -39,6 +39,11 @@ This repository contains course materials for astrophysics education at Universi
 - **Explicit namespace calls** for clarity (e.g., `readr::read_csv()`)
 - **RevealJS customization** for professional academic presentations
 
+### Quarto/Markdown Formatting Rules
+- **CRITICAL**: Always add an empty line before bullet lists or numbered lists
+- Without the empty line, lists will not render properly in RevealJS presentations
+- This applies to all list structures within slide content
+
 ### Quality Assurance
 - **Factual accuracy** verification for astronomical content
 - **Mathematical correctness** for equations and calculations
