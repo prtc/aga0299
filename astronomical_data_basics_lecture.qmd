@@ -26,9 +26,9 @@ format:
 - Recognize common sources of noise and artifacts in astronomical data
 - Use DS9 to load, display, and analyze FITS images
 
-
-
 ---
+
+# Section 1: The Data Landscape {background-color="#1e3a8a"}
 
 ## The Digital Revolution in Astronomy {.smaller}
 
@@ -39,16 +39,14 @@ format:
   - ESO VISTA: ~150 TB/year
   - LSST (under construction): **500 TB/month**
   - IllustrisTNG simulation: >1 Petabyte
+
 :::
 
 :::{.callout-important}
 Digital data analysis skills are now **essential** for modern astronomers
 :::
 
-
 ---
-
-# Section 1: The Data Landscape {background-color="#1e3a8a"}
 
 ## Modern Astronomy: A Data Revolution {.smaller}
 
@@ -106,6 +104,8 @@ Digital data analysis skills are now **essential** for modern astronomers
 - The situation is more diverse
 - **N-body**: Particle-based (stars, dark matter)
 - **Grid-based**: Cell-based properties (gas dynamics)
+- simulated data
+
 :::
 :::
 
@@ -154,8 +154,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 **The Reality:**
 
-- **Concepts are transferable** between languages
-- Learning one makes others easier
+- **Concepts are transferable** between languages (learning one makes others easier)
 - **Not starting from scratch** when switching
 :::
 
@@ -173,10 +172,6 @@ Digital data analysis skills are now **essential** for modern astronomers
 :::
 :::
 
-:::{.callout-tip}
-**Key insight**: Learning data processing concepts in any framework gives you skills that transfer easily to other tools and languages.
-:::
-
 ---
 
 # Section 2: Image Fundamentals {background-color="#1e3a8a"}
@@ -187,7 +182,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 :::{.columns}
 :::{.column width="50%"}
-- **Pixels**: Picture elements, discrete brightness values
+- **Pixels**: Picture elements, discrete ``brightness'' values
 - **Typical range**: 0 to 65,536 (16-bit) vs. 0-255 (8-bit consumer)
 - **Coordinate systems**: (X,Y) pixel coordinates + sky coordinates
 - **FITS format**: Flexible Image Transport System (since 1980s)
@@ -205,7 +200,7 @@ Digital data analysis skills are now **essential** for modern astronomers
 
 
 
-:::{.column width="50%"}
+:::{.column width="45%"}
 ![](arXiv-1905.13189v2/westlund-comparison.jpg){width=60%}
 
 *Example: Hubble image of star cluster Westerlund 2 *
@@ -277,8 +272,7 @@ TELESCOP = Telescope name
 :::
 
 :::{.column width="50%"}
-![](arXiv-1905.13189v2/header1.jpg){width=90%}
-
+![](arXiv-1905.13189v2/header1.jpg){width=85%}
 *Example: FITS header showing telescope, instrument, and observation details*
 :::
 :::
@@ -300,12 +294,13 @@ TELESCOP = Telescope name
 
 - Limits angular resolution
 - Affects photometry accuracy
-- Must be accounted for in analysis
-- Determines telescope's resolving power
 :::
 
 :::{.column width="50%"}
-![](arXiv-1905.13189v2/sdss-py-circles.pdf){width=90%}
+- Must be accounted for in analysis
+- Determines telescope's resolving power
+
+![](point_spread_function.jpg){width=85%}
 
 *Stars appear as disks due to atmospheric seeing and telescope diffraction*
 
@@ -376,6 +371,7 @@ These steps are **essential** - raw astronomical images are not science-ready!
 1. **Download DS9**: [http://ds9.si.edu/](http://ds9.si.edu/)
 2. **Install and open** the application
 3. **Familiarize yourself** with the interface:
+
    - Main image window
    - Menu structure (main + secondary)
    - Overview window
@@ -395,6 +391,7 @@ These steps are **essential** - raw astronomical images are not science-ready!
 :::{.columns}
 :::{.column width="50%"}
 **How it works:**
+
 - Dispersive element (grating/prism)
 - Slit mask for spatial separation
 - Wavelength → position mapping
@@ -403,6 +400,7 @@ These steps are **essential** - raw astronomical images are not science-ready!
 
 :::{.column width="50%"}
 **Information content:**
+
 - Chemical composition
 - Temperature and pressure
 - Radial velocity (Doppler shift)
@@ -428,6 +426,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 - **Challenge**: Visualizing 3D data on 2D screens
 
 **Example applications:**
+
 - Velocity maps (1st moment)
 - Velocity dispersion (2nd moment)  
 - Line ratio maps (diagnostics)
@@ -450,6 +449,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 :::
 
 **Modern surveys provide:**
+
 - Pre-measured catalogues
 - Standardized photometry
 - Quality flags and uncertainties
@@ -461,11 +461,13 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 :::{.columns}
 :::{.column width="50%"}
 **Histograms:**
+
 - Distribution of single properties
 - Linear vs. logarithmic binning
 - Reveals population characteristics
 
 **Scatter plots:**
+
 - Relationships between properties
 - Color coding for third dimension
 - Pattern recognition
@@ -473,11 +475,13 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 
 :::{.column width="50%"}
 **Color-magnitude diagrams:**
+
 - Hertzsprung-Russell diagram
 - Main sequence identification
 - Stellar evolution insights
 
 **Statistical analysis:**
+
 - Correlation functions
 - Fitting procedures
 - Machine learning applications
@@ -527,11 +531,13 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 1. **Go to**: [https://hla.stsci.edu/hlaview.html](https://hla.stsci.edu/hlaview.html)
 2. **Search for**: "M16" or use Proposal ID "05773"
 3. **Download these files** (~53 MB each):
+
    - `hst_05773_05_wfpc2_f502n_wf_drz.fits`
    - `hst_05773_05_wfpc2_f656n_wf_drz.fits` 
    - `hst_05773_05_wfpc2_f673n_wf_drz.fits`
 
 **Tasks:**
+
 - Load each image in DS9
 - Experiment with scaling (zscale, sqrt, log)
 - Explore coordinate systems
@@ -552,6 +558,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 :::{.columns}
 :::{.column width="50%"}
 **Pixel coordinates:**
+
 - (X,Y) position in image
 - Bottom-left = (1,1) in FITS
 - Integer values at pixel centers
@@ -559,6 +566,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 
 :::{.column width="50%"}
 **Sky coordinates (WCS):**
+
 - Right Ascension (RA): 0-24 hours
 - Declination (Dec): -90° to +90°
 - Epoch (usually J2000)
@@ -566,6 +574,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 :::
 
 **Practice:**
+
 - Move cursor around image
 - Note coordinate displays
 - Switch between sexagesimal and decimal
@@ -576,6 +585,7 @@ Spectroscopy reveals the **physical properties** of astronomical objects
 ## FITS Headers: The Metadata {.smaller}
 
 **Accessing information:**
+
 - File → Header → Choose [SCI] version
 - Contains observation details, instrument settings, processing history
 
@@ -590,6 +600,7 @@ INSTRUME  = Instrument name
 ```
 
 **Coordinate information:**
+
 - CRVAL1, CRVAL2: Reference coordinates
 - CRPIX1, CRPIX2: Reference pixels
 - CD matrix: Coordinate transformation
@@ -620,12 +631,14 @@ This is a **false-color** image! The filters don't correspond to true RGB.
 **Your turn to create the Pillars of Creation!**
 
 **Steps:**
+
 1. Load all three filter images
 2. Experiment with different color assignments
 3. Try different scaling functions
 4. Adjust scale limits for best contrast
 
 **Questions to explore:**
+
 - What structures become visible with different scalings?
 - How do the different filters reveal different features?
 - What might the colors tell us about the physics?
@@ -655,34 +668,16 @@ This is a **false-color** image! The filters don't correspond to true RGB.
 
 **Upcoming lectures:**
 - TOPCAT for catalogue analysis
-- Python for automated data processing
-- Advanced visualization techniques
 
 **Recommended resources:**
+
 - Complete Pössel guide (sections 4-12)
 - DS9 user manual: [http://ds9.si.edu/doc/](http://ds9.si.edu/doc/)
 - FITS standard documentation
 - Virtual Observatory tools and protocols
 
 **Practice suggestions:**
+
 - Explore different astronomical surveys (SDSS, 2MASS, etc.)
 - Try the DS9 tutorial datasets
 - Join astronomy forums and communities
-
-
-
----
-
-## Questions & Discussion {.center}
-
-**Thank you for your attention!**
-
-**Feel free to ask about:**
-- Specific data analysis challenges
-- Tool recommendations
-- Research applications
-- Technical details
-
-**Contact**: [Your contact information]
-
-**Course materials**: [Link to course repository]

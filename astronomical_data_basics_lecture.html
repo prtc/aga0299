@@ -217,6 +217,14 @@ Slides by Paula Coelho, based on Pössel (2020)
 <li>Use DS9 to load, display, and analyze FITS images</li>
 </ul>
 </section>
+<section class="slide level2">
+
+</section>
+<section>
+<section id="section-1-the-data-landscape" class="title-slide slide level1 center" data-background-color="#1e3a8a">
+<h1>Section 1: The Data Landscape</h1>
+
+</section>
 <section id="the-digital-revolution-in-astronomy" class="slide level2 smaller">
 <h2>The Digital Revolution in Astronomy</h2>
 <div>
@@ -244,14 +252,6 @@ Slides by Paula Coelho, based on Pössel (2020)
 </div>
 </div>
 </div>
-</section>
-<section class="slide level2">
-
-</section>
-<section>
-<section id="section-1-the-data-landscape" class="title-slide slide level1 center" data-background-color="#1e3a8a">
-<h1>Section 1: The Data Landscape</h1>
-
 </section>
 <section id="modern-astronomy-a-data-revolution" class="slide level2 smaller">
 <h2>Modern Astronomy: A Data Revolution</h2>
@@ -299,6 +299,7 @@ Slides by Paula Coelho, based on Pössel (2020)
 <li>The situation is more diverse</li>
 <li><strong>N-body</strong>: Particle-based (stars, dark matter)</li>
 <li><strong>Grid-based</strong>: Cell-based properties (gas dynamics)</li>
+<li>simulated data</li>
 </ul>
 </div></div>
 </section>
@@ -350,8 +351,7 @@ Slides by Paula Coelho, based on Pössel (2020)
 </ul>
 <p><strong>The Reality:</strong></p>
 <ul>
-<li><strong>Concepts are transferable</strong> between languages</li>
-<li>Learning one makes others easier</li>
+<li><strong>Concepts are transferable</strong> between languages (learning one makes others easier)</li>
 <li><strong>Not starting from scratch</strong> when switching</li>
 </ul>
 </div><div class="column" style="width:50%;">
@@ -367,19 +367,6 @@ Slides by Paula Coelho, based on Pössel (2020)
 <li>Active community maintenance</li>
 </ul>
 </div></div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p><strong>Key insight</strong>: Learning data processing concepts in any framework gives you skills that transfer easily to other tools and languages.</p>
-</div>
-</div>
-</div>
 </section>
 <section class="slide level2">
 
@@ -394,7 +381,7 @@ Slides by Paula Coelho, based on Pössel (2020)
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
-<li><strong>Pixels</strong>: Picture elements, discrete brightness values</li>
+<li><strong>Pixels</strong>: Picture elements, discrete ``brightness’’ values</li>
 <li><strong>Typical range</strong>: 0 to 65,536 (16-bit) vs.&nbsp;0-255 (8-bit consumer)</li>
 <li><strong>Coordinate systems</strong>: (X,Y) pixel coordinates + sky coordinates</li>
 <li><strong>FITS format</strong>: Flexible Image Transport System (since 1980s)</li>
@@ -406,7 +393,7 @@ Slides by Paula Coelho, based on Pössel (2020)
 <li>point sources (stars)</li>
 <li>extended sources (galaxies, nebulae)</li>
 </ul>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:45%;">
 <p><img data-src="arXiv-1905.13189v2/westlund-comparison.jpg" style="width:60.0%"></p>
 <p><em>Example: Hubble image of star cluster Westerlund 2 </em></p>
 </div></div>
@@ -474,8 +461,7 @@ EXPTIME  = Exposure time (sec)
 FILTER   = Filter used
 TELESCOP = Telescope name</code></pre>
 </div><div class="column" style="width:50%;">
-<p><img data-src="arXiv-1905.13189v2/header1.jpg" style="width:90.0%"></p>
-<p><em>Example: FITS header showing telescope, instrument, and observation details</em></p>
+<p><img data-src="arXiv-1905.13189v2/header1.jpg" style="width:85.0%"> <em>Example: FITS header showing telescope, instrument, and observation details</em></p>
 </div></div>
 </section>
 <section id="the-point-spread-function-psf" class="slide level2 smaller">
@@ -493,16 +479,13 @@ TELESCOP = Telescope name</code></pre>
 <ul>
 <li>Limits angular resolution</li>
 <li>Affects photometry accuracy</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<ul>
 <li>Must be accounted for in analysis</li>
 <li>Determines telescope’s resolving power</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><embed data-src="arXiv-1905.13189v2/sdss-py-circles.pdf" style="width:90.0%"></p>
-<figcaption>PSF examples showing stellar profiles</figcaption>
-</figure>
-</div>
+<p><img data-src="point_spread_function.jpg" style="width:85.0%"></p>
 <p><em>Stars appear as disks due to atmospheric seeing and telescope diffraction</em></p>
 <p><strong>Typical PSF size:</strong></p>
 <ul>
@@ -578,9 +561,9 @@ TELESCOP = Telescope name</code></pre>
 <h2><strong>Hands-on Break</strong>: Download DS9</h2>
 <p><strong>Let’s get started with real data!</strong></p>
 <ol type="1">
-<li><strong>Download DS9</strong>: <a href="http://ds9.si.edu/">http://ds9.si.edu/</a></li>
-<li><strong>Install and open</strong> the application</li>
-<li><strong>Familiarize yourself</strong> with the interface:
+<li><p><strong>Download DS9</strong>: <a href="http://ds9.si.edu/">http://ds9.si.edu/</a></p></li>
+<li><p><strong>Install and open</strong> the application</p></li>
+<li><p><strong>Familiarize yourself</strong> with the interface:</p>
 <ul>
 <li>Main image window</li>
 <li>Menu structure (main + secondary)</li>
@@ -614,9 +597,21 @@ TELESCOP = Telescope name</code></pre>
 <h2>Astronomical Spectroscopy</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>How it works:</strong> - Dispersive element (grating/prism) - Slit mask for spatial separation - Wavelength → position mapping - Calibration with known lines</p>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Dispersive element (grating/prism)</li>
+<li>Slit mask for spatial separation</li>
+<li>Wavelength → position mapping</li>
+<li>Calibration with known lines</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Information content:</strong> - Chemical composition - Temperature and pressure - Radial velocity (Doppler shift) - Magnetic fields</p>
+<p><strong>Information content:</strong></p>
+<ul>
+<li>Chemical composition</li>
+<li>Temperature and pressure</li>
+<li>Radial velocity (Doppler shift)</li>
+<li>Magnetic fields</li>
+</ul>
 </div></div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -641,8 +636,13 @@ TELESCOP = Telescope name</code></pre>
 <li><strong>Applications</strong>: Galaxy kinematics, stellar populations</li>
 <li><strong>Challenge</strong>: Visualizing 3D data on 2D screens</li>
 </ul>
-<p><strong>Example applications:</strong> - Velocity maps (1st moment) - Velocity dispersion (2nd moment)<br>
-- Line ratio maps (diagnostics)</p>
+<p><strong>Example applications:</strong></p>
+<ul>
+<li>Velocity maps (1st moment)</li>
+<li>Velocity dispersion (2nd moment)<br>
+</li>
+<li>Line ratio maps (diagnostics)</li>
+</ul>
 </section>
 <section class="slide level2">
 
@@ -664,17 +664,42 @@ TELESCOP = Telescope name</code></pre>
 <li><strong>Statistical analysis</strong> → Physical insights</li>
 </ol>
 </div>
-<p><strong>Modern surveys provide:</strong> - Pre-measured catalogues - Standardized photometry - Quality flags and uncertainties</p>
+<p><strong>Modern surveys provide:</strong></p>
+<ul>
+<li>Pre-measured catalogues</li>
+<li>Standardized photometry</li>
+<li>Quality flags and uncertainties</li>
+</ul>
 </section>
 <section id="visualization-techniques" class="slide level2 smaller">
 <h2>Visualization Techniques</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Histograms:</strong> - Distribution of single properties - Linear vs.&nbsp;logarithmic binning - Reveals population characteristics</p>
-<p><strong>Scatter plots:</strong> - Relationships between properties - Color coding for third dimension - Pattern recognition</p>
+<p><strong>Histograms:</strong></p>
+<ul>
+<li>Distribution of single properties</li>
+<li>Linear vs.&nbsp;logarithmic binning</li>
+<li>Reveals population characteristics</li>
+</ul>
+<p><strong>Scatter plots:</strong></p>
+<ul>
+<li>Relationships between properties</li>
+<li>Color coding for third dimension</li>
+<li>Pattern recognition</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Color-magnitude diagrams:</strong> - Hertzsprung-Russell diagram - Main sequence identification - Stellar evolution insights</p>
-<p><strong>Statistical analysis:</strong> - Correlation functions - Fitting procedures - Machine learning applications</p>
+<p><strong>Color-magnitude diagrams:</strong></p>
+<ul>
+<li>Hertzsprung-Russell diagram</li>
+<li>Main sequence identification</li>
+<li>Stellar evolution insights</li>
+</ul>
+<p><strong>Statistical analysis:</strong></p>
+<ul>
+<li>Correlation functions</li>
+<li>Fitting procedures</li>
+<li>Machine learning applications</li>
+</ul>
 </div></div>
 </section>
 <section class="slide level2">
@@ -715,16 +740,22 @@ TELESCOP = Telescope name</code></pre>
 <div class="column" style="width:50%;">
 <p><strong>Download the famous “Pillars of Creation” data:</strong></p>
 <ol type="1">
-<li><strong>Go to</strong>: <a href="https://hla.stsci.edu/hlaview.html">https://hla.stsci.edu/hlaview.html</a></li>
-<li><strong>Search for</strong>: “M16” or use Proposal ID “05773”</li>
-<li><strong>Download these files</strong> (~53 MB each):
+<li><p><strong>Go to</strong>: <a href="https://hla.stsci.edu/hlaview.html">https://hla.stsci.edu/hlaview.html</a></p></li>
+<li><p><strong>Search for</strong>: “M16” or use Proposal ID “05773”</p></li>
+<li><p><strong>Download these files</strong> (~53 MB each):</p>
 <ul>
 <li><code>hst_05773_05_wfpc2_f502n_wf_drz.fits</code></li>
 <li><code>hst_05773_05_wfpc2_f656n_wf_drz.fits</code></li>
 <li><code>hst_05773_05_wfpc2_f673n_wf_drz.fits</code></li>
 </ul></li>
 </ol>
-<p><strong>Tasks:</strong> - Load each image in DS9 - Experiment with scaling (zscale, sqrt, log) - Explore coordinate systems - Examine FITS headers</p>
+<p><strong>Tasks:</strong></p>
+<ul>
+<li>Load each image in DS9</li>
+<li>Experiment with scaling (zscale, sqrt, log)</li>
+<li>Explore coordinate systems</li>
+<li>Examine FITS headers</li>
+</ul>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -739,15 +770,34 @@ TELESCOP = Telescope name</code></pre>
 <p><strong>Understanding astronomical coordinates:</strong></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Pixel coordinates:</strong> - (X,Y) position in image - Bottom-left = (1,1) in FITS - Integer values at pixel centers</p>
+<p><strong>Pixel coordinates:</strong></p>
+<ul>
+<li>(X,Y) position in image</li>
+<li>Bottom-left = (1,1) in FITS</li>
+<li>Integer values at pixel centers</li>
+</ul>
 </div><div class="column" style="width:50%;">
-<p><strong>Sky coordinates (WCS):</strong> - Right Ascension (RA): 0-24 hours - Declination (Dec): -90° to +90° - Epoch (usually J2000)</p>
+<p><strong>Sky coordinates (WCS):</strong></p>
+<ul>
+<li>Right Ascension (RA): 0-24 hours</li>
+<li>Declination (Dec): -90° to +90°</li>
+<li>Epoch (usually J2000)</li>
+</ul>
 </div></div>
-<p><strong>Practice:</strong> - Move cursor around image - Note coordinate displays - Switch between sexagesimal and decimal</p>
+<p><strong>Practice:</strong></p>
+<ul>
+<li>Move cursor around image</li>
+<li>Note coordinate displays</li>
+<li>Switch between sexagesimal and decimal</li>
+</ul>
 </section>
 <section id="fits-headers-the-metadata" class="slide level2 smaller">
 <h2>FITS Headers: The Metadata</h2>
-<p><strong>Accessing information:</strong> - File → Header → Choose [SCI] version - Contains observation details, instrument settings, processing history</p>
+<p><strong>Accessing information:</strong></p>
+<ul>
+<li>File → Header → Choose [SCI] version</li>
+<li>Contains observation details, instrument settings, processing history</li>
+</ul>
 <p><strong>Key keywords to look for:</strong></p>
 <pre><code>OBJECT    = Object name
 DATE-OBS  = Observation date  
@@ -755,7 +805,12 @@ EXPTIME   = Exposure time (seconds)
 FILTER    = Filter used
 TELESCOP  = Telescope name
 INSTRUME  = Instrument name</code></pre>
-<p><strong>Coordinate information:</strong> - CRVAL1, CRVAL2: Reference coordinates - CRPIX1, CRPIX2: Reference pixels - CD matrix: Coordinate transformation</p>
+<p><strong>Coordinate information:</strong></p>
+<ul>
+<li>CRVAL1, CRVAL2: Reference coordinates</li>
+<li>CRPIX1, CRPIX2: Reference pixels</li>
+<li>CD matrix: Coordinate transformation</li>
+</ul>
 </section>
 <section id="creating-rgb-color-images" class="slide level2 smaller">
 <h2>Creating RGB Color Images</h2>
@@ -789,8 +844,19 @@ INSTRUME  = Instrument name</code></pre>
 <section id="final-hands-on-session-create-your-composite" class="slide level2 smaller">
 <h2><strong>Final Hands-on Session</strong>: Create Your Composite</h2>
 <p><strong>Your turn to create the Pillars of Creation!</strong></p>
-<p><strong>Steps:</strong> 1. Load all three filter images 2. Experiment with different color assignments 3. Try different scaling functions 4. Adjust scale limits for best contrast</p>
-<p><strong>Questions to explore:</strong> - What structures become visible with different scalings? - How do the different filters reveal different features? - What might the colors tell us about the physics?</p>
+<p><strong>Steps:</strong></p>
+<ol type="1">
+<li>Load all three filter images</li>
+<li>Experiment with different color assignments</li>
+<li>Try different scaling functions</li>
+<li>Adjust scale limits for best contrast</li>
+</ol>
+<p><strong>Questions to explore:</strong></p>
+<ul>
+<li>What structures become visible with different scalings?</li>
+<li>How do the different filters reveal different features?</li>
+<li>What might the colors tell us about the physics?</li>
+</ul>
 <p><strong>Challenge</strong>: Can you identify the pillar structures that made this image famous?</p>
 </section>
 <section id="key-takeaways" class="slide level2 smaller">
@@ -821,16 +887,20 @@ INSTRUME  = Instrument name</code></pre>
 </section>
 <section id="next-steps-resources" class="slide level2 smaller">
 <h2>Next Steps &amp; Resources</h2>
-<p><strong>Upcoming lectures:</strong> - TOPCAT for catalogue analysis - Python for automated data processing - Advanced visualization techniques</p>
-<p><strong>Recommended resources:</strong> - Complete Pössel guide (sections 4-12) - DS9 user manual: <a href="http://ds9.si.edu/doc/">http://ds9.si.edu/doc/</a> - FITS standard documentation - Virtual Observatory tools and protocols</p>
-<p><strong>Practice suggestions:</strong> - Explore different astronomical surveys (SDSS, 2MASS, etc.) - Try the DS9 tutorial datasets - Join astronomy forums and communities</p>
-</section>
-<section id="questions-discussion" class="slide level2 center">
-<h2>Questions &amp; Discussion</h2>
-<p><strong>Thank you for your attention!</strong></p>
-<p><strong>Feel free to ask about:</strong> - Specific data analysis challenges - Tool recommendations - Research applications - Technical details</p>
-<p><strong>Contact</strong>: [Your contact information]</p>
-<p><strong>Course materials</strong>: [Link to course repository]</p>
+<p><strong>Upcoming lectures:</strong> - TOPCAT for catalogue analysis</p>
+<p><strong>Recommended resources:</strong></p>
+<ul>
+<li>Complete Pössel guide (sections 4-12)</li>
+<li>DS9 user manual: <a href="http://ds9.si.edu/doc/">http://ds9.si.edu/doc/</a></li>
+<li>FITS standard documentation</li>
+<li>Virtual Observatory tools and protocols</li>
+</ul>
+<p><strong>Practice suggestions:</strong></p>
+<ul>
+<li>Explore different astronomical surveys (SDSS, 2MASS, etc.)</li>
+<li>Try the DS9 tutorial datasets</li>
+<li>Join astronomy forums and communities</li>
+</ul>
 
 </section></section>
     </div>
