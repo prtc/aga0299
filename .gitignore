@@ -1,3 +1,6 @@
+# Specifics to this project
+!astronomical_data_basics_lecture_files/
+
 # Quarto
 /.quarto/
 /_site/
