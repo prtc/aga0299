@@ -1,5 +1,7 @@
 # Specifics to this project
 !astronomical_data_basics_lecture_files/
+!arXiv-1905.13189v2/*.pdf
+!1905.13189v2.pdf
 
 # Quarto
 /.quarto/
@@ -8,8 +10,6 @@
 /_manuscript/
 *.html
 *.pdf
-!arXiv-1905.13189v2/*.pdf
-!1905.13189v2.pdf
 *_files/
 
 # R and RStudio
